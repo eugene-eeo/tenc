@@ -59,19 +59,13 @@ def _idump(xs):
         yield from _idump(xs[0])
         yield from _idump(xs[1])
         return
-    tag = (
-        "A" if isinstance(xs, Atom) else  # more specific types before more general ones,
-        "C" if isinstance(xs, Char) else  # since Char and Atom are both subclasses of str
-        "S" if isinstance(xs, str) else
-        "B" if isinstance(xs, bool) else  # bool before int because isinstance(False, int) == True
-        "N" if isinstance(xs, int) else
-        "Z"
-        )
-    content = (
-        xs if tag in "ACS" else
-        str(xs) if tag == "N" else
-        ("t" if xs else "f") if tag == "B" else
-        ""
+    tag, content = (
+        ("A", xs) if isinstance(xs, Atom) else  # more specific types before more general ones,
+        ("C", xs) if isinstance(xs, Char) else  # since Char and Atom are both subclasses of str
+        ("S", xs) if isinstance(xs, str) else
+        ("B", 't' if xs else 'f') if isinstance(xs, bool) else  # bool before int because isinstance(False, int) == True
+        ("N", str(xs)) if isinstance(xs, int) else
+        ("Z", '')
         )
     yield tag
     yield str(len(content))

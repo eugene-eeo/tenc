@@ -1,7 +1,7 @@
-# tenc
+# `tenc`
 
-Tiny Encoding library -- collection of encoding and decoding functions for
-a variety of tiny serialization specifications. Initial codebase written
+**Tiny Encoding library** -- collection of encoding and decoding functions
+for a variety of tiny serialization specifications. Initial codebase written
 on board a train journey, so the `t` in `tenc` _may_ also mean train.
 
 Currently implemented:

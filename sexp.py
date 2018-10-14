@@ -1,8 +1,11 @@
 """
     sexp
     ~~~~
+
     Implementation of a simpler subset of rivest's sexps,
-    but only supports strings in 'verbatim' form.
+    but only supports strings in 'verbatim' form, and assumes
+    that the transport form is the same as canonical form,
+    with some relaxations allowed.
 """
 
 
@@ -11,6 +14,9 @@ class SExpError(ValueError):
 
 
 def loads(s):
+    """
+    Deserializes the sexp string `s`.
+    """
     S = []
     S.append(S)
     i = 0
@@ -66,4 +72,7 @@ def _idump(d):
 
 
 def dumps(d):
+    """
+    Converts a structure `d` into an sexp string.
+    """
     return "".join(_idump(d))

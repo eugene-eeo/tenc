@@ -1,10 +1,8 @@
 # `tenc`
 
-**Tiny Encoding library** -- collection of encoding and decoding functions
-for a variety of tiny serialization specifications. Initial codebase written
+**Tiny ENCoding library** -- collection of encoders and decoders for
+a variety of tiny serialization specifications. Initial codebase written
 on board a train journey, so the `t` in `tenc` _may_ also mean train.
-
-Currently implemented:
 
  - [djb's netstrings](https://cr.yp.to/proto/netstrings.txt)
  - [bittorrent's bencoding](http://www.bittorrent.org/beps/bep_0003.html#bencoding)

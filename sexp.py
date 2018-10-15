@@ -26,7 +26,7 @@ def loads(s):
         while s[i] == ' ':
             i += 1
             if i == N:
-                raise SExpError
+                raise SExpError("unterminated s-exp")
         ch = s[i]
 
         if ch == ')':
@@ -40,16 +40,20 @@ def loads(s):
             i += 1
             continue
 
+        # get length header
         length = ch
         while True:
             i += 1
             if i == N:
-                raise SExpError
+                raise SExpError("unterminated length")
             if s[i] == ':':
                 break
             length += s[i]
+
         length = int(length)
-        assert i + length < N
+        if i + length >= N:
+            raise SExpError("bad length specified")
+
         data = ""
         for _ in range(length):
             i += 1

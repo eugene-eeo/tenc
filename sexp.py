@@ -49,15 +49,15 @@ def loads(s):
             if s[i] == ':':
                 break
             length += s[i]
-
         length = int(length)
-        if i + length >= N:
-            raise SExpError("bad length specified")
 
         data = ""
         for _ in range(length):
-            i += 1
-            data += s[i]
+            try:
+                i += 1
+                data += s[i]
+            except IndexError:
+                raise SExpError("bad length specified")
         S[-1].append(data)
         i += 1
     return S.pop()

@@ -14,23 +14,21 @@ def loadb(b):
     Retrieve a byte string from nestring `b`.
     """
     i = 0
-    l = ''
+    l = 0
     # get length
     while True:
         ch = b[i]
-        i += 1
         if ch == 58:  # ch == ':'
             break
         elif 48 <= ch <= 57:  # '0' <= ch <= '9'
-            l += chr(ch)
+            l *= 10
+            l += (ch - 48)
+            i += 1
         else:
             raise ValueError("expected 0-9 or : in header")
-    if len(l) == 0:
-        raise ValueError("emtpy header")
     # i == length of header
-    # b = [...] (length i) + [...] (length l) + "," (1)
-    length = int(l)
-    if len(b) - i - 1 != length:
+    # b = [...] (length i) + ":"(1) + [...] + "," (1)
+    if len(b) - i - 2 != l:
         raise ValueError("payload length doesn't match declared length")
     return b[i:-1]
 

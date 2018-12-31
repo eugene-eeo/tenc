@@ -83,9 +83,9 @@ def _loadi(it, expecting_eos=False):
 def _idump(d):
     if isinstance(d, dict):
         yield 'd'
-        for key, value in d.items():
+        for key in sorted(d):
             yield from _idump(key)
-            yield from _idump(value)
+            yield from _idump(d[key])
         yield 'e'
 
     elif isinstance(d, (list, tuple)):

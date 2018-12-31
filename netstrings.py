@@ -18,15 +18,14 @@ def loadb(b):
     # get length
     while True:
         ch = b[i]
-        if ch == 58:  # ch == ':'
-            break
-        elif 48 <= ch <= 57:  # '0' <= ch <= '9'
+        if 48 <= ch <= 57:  # '0' <= ch <= '9'
             l *= 10
             l += (ch - 48)
             i += 1
+        elif ch == 58:  # ch == ':'
+            break
         else:
             raise ValueError("expected 0-9 or : in header")
-    # i == length of header
     # b = [...] (length i) + ":"(1) + [...] + "," (1)
     if len(b) - i - 2 != l:
         raise ValueError("payload length doesn't match declared length")

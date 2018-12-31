@@ -63,9 +63,9 @@ def _idump(xs):
         ("A", xs) if isinstance(xs, Atom) else  # more specific types before more general ones,
         ("C", xs) if isinstance(xs, Char) else  # since Char and Atom are both subclasses of str
         ("S", xs) if isinstance(xs, str) else
-        ("B", 't' if xs else 'f') if isinstance(xs, bool) else  # bool before int because isinstance(False, int) == True
+        ("B", "t" if xs else "f") if isinstance(xs, bool) else  # bool before int because isinstance(False, int) == True
         ("N", str(xs)) if isinstance(xs, int) else
-        ("Z", '')
+        ("Z", "")
         )
     yield tag
     yield str(len(content))
